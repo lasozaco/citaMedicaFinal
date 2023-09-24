@@ -33,11 +33,21 @@ jobs:
             -   run: php artisan view:cache
             
             # Here is the deployment action
-            -   name: Upload from output to a remote server via FTP
-                uses: modern-dev/ftp-mirror@v2
-                with:
-                    server: ${{ secrets.FTP_SERVER }}
-                    user: ${{ secrets.FTP_USER }}
-                    password: ${{ secrets.FTP_PASSWORD }}
-                    delete: "true"
-                    exlude: "vendor/ public/"
+            #-   name: Upload from output to a remote server via FTP
+            #    uses: modern-dev/ftp-mirror@v2
+            #    with:
+            #        server: ${{ secrets.FTP_SERVER }}
+            #        user: ${{ secrets.FTP_USER }}
+            #        password: ${{ secrets.FTP_PASSWORD }}
+            #        delete: "false"
+            #       exlude: "vendor/ public/ .git/ .github/ .scannerwork/ "
+            #-   name: FTP Interact
+            #    uses: priradev/ftp-interactions@v0.2.9-beta
+            #    with:
+             #       # required
+              #      host: ${{ secrets.FTP_SERVER }}
+               #     username: ${{ secrets.FTP_USER }}
+                #    password: ${{ secrets.FTP_PASSWORD }}
+                 #   ftpAction: Copy
+                  #  ignoreCertificateErrors: false
+                    
