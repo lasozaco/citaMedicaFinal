@@ -1,0 +1,34 @@
+name: Deployment Pipeline
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-22.04
+        steps:
+            -   name: Checkout Repository   
+                uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0          
+            -   name: Setup Enviroment
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+            -   name: Speed up the packages installation process
+                run: composer global require hirak/prestissimo
+            -   name: Install Packages
+                run: composer install --no-dev
+            -   name: Deploy to Server
+                uses: ngocquyhoang/deploy@laravel
+                with:
+                    user: user
+                    host: host
+                    port: port
+                    path: path
+                    owner: owner
+                env:
+                    DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
