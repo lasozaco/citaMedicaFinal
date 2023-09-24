@@ -17,18 +17,19 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: '8.1'
-            -   name: Speed up the packages installation process
-                run: composer global require hirak/prestissimo
-            -   name: Install Packages
-                run: composer install --no-dev
-            -   name: Deploy to Server
-                uses: ngocquyhoang/deploy@laravel
-                with:
-                    user: user
-                    host: host
-                    port: port
-                    path: path
-                    owner: owner
-                env:
-                    DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+            -   name: Copy .env
+                run: php -r "file_exist('.env') || copy('.env.ci', '.env');"
+            -   name: Install Packages Prod
+                run: composer install --optimize-autoloader --no-dev
+            -   name: Prod Config
+                run: php artisan key:generate
+            -   run: php artisan cache:clear
+            -   run: php artisan config:clear
+            -   run: php artisan config:cache
+            -   run: php artisan key:generate
+            -   run: php artisan config:cache
+            -   run: php artisan event:cache
+            -   run: php artisan route:cache
+            -   run: php artisan view:cache
+            
 
