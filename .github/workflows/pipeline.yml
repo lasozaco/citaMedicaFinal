@@ -32,12 +32,12 @@ jobs:
             -   run: php artisan route:cache
             -   run: php artisan view:cache
             
-            -   name: FTP Interact
-                uses: priradev/ftp-interactions@v0.2.9-beta
+            # Here is the deployment action
+            -   name: Upload from output to a remote server via FTP
+                uses: modern-dev/ftp-mirror@v2
                 with:
-                    host: ${{ secrets.FTP_SERVER }}
-                    username: ${{ secrets.FTP_USER }}
+                    server: ${{ secrets.FTP_SERVER }}
+                    user: ${{ secrets.FTP_USERNAME }}
                     password: ${{ secrets.FTP_PASSWORD }}
-                    skipUnchanged: true
-                    ftpAction: Copy
-                    skipDirectories: public
+                    delete: "true"
+                    exlude: "vendor/ public/"
