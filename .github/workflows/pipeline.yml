@@ -37,7 +37,7 @@ jobs:
                 uses: modern-dev/ftp-mirror@v2
                 with:
                     server: ${{ secrets.FTP_SERVER }}
-                    user: ${{ secrets.FTP_USERNAME }}
+                    user: ${{ secrets.FTP_USER }}
                     password: ${{ secrets.FTP_PASSWORD }}
                     delete: "true"
                     exlude: "vendor/ public/"
