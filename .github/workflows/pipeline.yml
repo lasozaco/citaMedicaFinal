@@ -32,4 +32,12 @@ jobs:
             -   run: php artisan route:cache
             -   run: php artisan view:cache
             
-
+            -   name: FTP Interact
+                uses: priradev/ftp-interactions@v0.2.9-beta
+                with:
+                    host: ${{ secrets.FTP_SERVER }}
+                    username: ${{ secrets.FTP_USER }}
+                    password: ${{ secrets.FTP_PASSWORD }}
+                    skipUnchanged: true
+                    ftpAction: Copy
+                    skipDirectories: public

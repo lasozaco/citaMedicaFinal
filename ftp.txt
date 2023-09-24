@@ -1,0 +1,3 @@
+usr: citas_medicas@sintraunipricol.com.co
+pass: "WAXZ)$bYuMbS"
+server: ftp.sintraunipricol.com.co
