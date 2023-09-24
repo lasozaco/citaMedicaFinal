@@ -18,7 +18,7 @@ jobs:
                 with:
                     php-version: '8.1'
             -   name: Copy .env
-                run: php -r "file_exist('.env') || copy('.env.ci', '.env');"
+                run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
             -   name: Install Packages Prod
                 run: composer install --optimize-autoloader --no-dev
             -   name: Prod Config
